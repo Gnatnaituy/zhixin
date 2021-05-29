@@ -3,9 +3,18 @@ server:
   servlet:
     context-path: /
 
+static:
+  resources:
+    path: /Users/ravooo/Downloads/zhixin/
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/zhixin
     username: root
     password: 5523
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${static.resources.path}
