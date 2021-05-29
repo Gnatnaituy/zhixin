@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixin.mapper.BannerMapper">
+
+    <insert id="save">
+        INSERT INTO `banner` (image, sort)
+        VALUES (#{banner.image}, #{banner.sort})
+    </insert>
+
+    <update id="update">
+        UPDATE `banner`
+        SET image       = #{banner.image},
+            sort        = #{banner.sort},
+            update_time = NOW()
+        WHERE id = #{banner.id}
+    </update>
+
+    <update id="delete">
+        UPDATE `banner`
+        SET is_deleted = 1
+        WHERE id = #{id}
+    </update>
+
+</mapper>
