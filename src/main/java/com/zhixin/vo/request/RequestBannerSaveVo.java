@@ -12,4 +12,6 @@ public class RequestBannerSaveVo {
     private Long id;
 
     private String image;
+
+    private Integer sort;
 }

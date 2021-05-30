@@ -1,9 +1,9 @@
 package com.zhixin.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhixin.entity.ModuleType;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author yutiantang
@@ -11,11 +11,5 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Mapper
 @Component
-public interface ModuleTypeMapper {
-
-    int save(@RequestParam("moduleType") ModuleType moduleType);
-
-    int update(@RequestParam("moduleType") ModuleType moduleType);
-
-    int delete(@RequestParam("id") Long id);
+public interface ModuleTypeMapper extends BaseMapper<ModuleType> {
 }

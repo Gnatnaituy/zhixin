@@ -14,4 +14,6 @@ public class RequestModuleSubTypeSaveVo {
     private Long typeId;
 
     private String name;
+
+    private Integer sort;
 }

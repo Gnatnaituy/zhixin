@@ -1,9 +1,8 @@
 package com.zhixin.mapper;
 
-import com.zhixin.entity.Company;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author yutiantang
@@ -11,11 +10,5 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Mapper
 @Component
-public interface CompanyMapper {
-
-    int save(@RequestParam("company") Company company);
-
-    int update(@RequestParam("company") Company company);
-
-    int delete(@RequestParam("id") Long id);
+public interface CompanyMapper extends BaseMapper<CompanyMapper> {
 }

@@ -7,6 +7,7 @@ static:
   resources:
     path: /Users/ravooo/Downloads/zhixin/
 
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,3 +19,11 @@ spring:
   web:
     resources:
       static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${static.resources.path}
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1

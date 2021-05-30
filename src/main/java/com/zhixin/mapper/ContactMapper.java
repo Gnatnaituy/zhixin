@@ -1,9 +1,9 @@
 package com.zhixin.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhixin.entity.Contact;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author yutiantang
@@ -11,11 +11,5 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Mapper
 @Component
-public interface ContactMapper {
-
-    int save(@RequestParam("contact") Contact contact);
-
-    int update(@RequestParam("contact") Contact contact);
-
-    int delete(@RequestParam("id") Long id);
+public interface ContactMapper extends BaseMapper<Contact> {
 }

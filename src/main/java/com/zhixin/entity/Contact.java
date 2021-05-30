@@ -1,9 +1,7 @@
 package com.zhixin.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.zhixin.common.BaseEntity;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -12,14 +10,10 @@ import java.io.Serializable;
  * @create 2021/5/28 22:15
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Contact implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class Contact extends BaseEntity {
 
-    private static final long serialVersionUID = -1840831686851699942L;
-
-    private Long id;
+    private Long companyId;
 
     private String name;
 
@@ -30,10 +24,4 @@ public class Contact implements Serializable {
     private String email;
 
     private Integer sort;
-
-    private Boolean isDeleted;
-
-    private Long createTime;
-
-    private Long updateTime;
 }

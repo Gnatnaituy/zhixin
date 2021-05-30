@@ -1,5 +1,6 @@
 package com.zhixin.utils;
 
+import com.zhixin.consts.ErrorMessage;
 import com.zhixin.vo.common.ResponseEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,10 +23,10 @@ public class UploadUtil {
 
     public ResponseEntity upload(MultipartFile file) {
         if (ObjectUtils.isEmpty(file) || file.isEmpty() || ObjectUtils.isEmpty(file.getOriginalFilename())) {
-            return ResponseEntity.error("文件为空！");
+            return ResponseEntity.error(ErrorMessage.EMPTY_FILE);
         }
 
-        String filePath = path + getYearAndMonth();
+        String filePath = path + "images/" + getYearAndMonth();
         File directory = new File(filePath);
         if (!directory.exists()) {
             directory.mkdirs();
@@ -41,7 +42,7 @@ public class UploadUtil {
                 bos.write(bs, 0, len);
             }
         } catch (IOException e) {
-            return ResponseEntity.error("上传文件失败！");
+            return ResponseEntity.error(ErrorMessage.UPLOAD_FAILED);
         }
 
         return ResponseEntity.success(fileName);

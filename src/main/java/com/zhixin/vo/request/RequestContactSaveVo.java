@@ -18,4 +18,6 @@ public class RequestContactSaveVo {
     private String phone;
 
     private String email;
+
+    private Integer sort;
 }
