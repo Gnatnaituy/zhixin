@@ -16,4 +16,10 @@ public class ModuleType extends BaseEntity {
     private String name;
 
     private String background;
+
+    private Integer sort;
+
+    public static final String NAME = "name";
+    public static final String BACKGROUND = "background";
+    public static final String SORT = "sort";
 }

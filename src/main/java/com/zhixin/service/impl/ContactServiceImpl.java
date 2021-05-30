@@ -71,12 +71,12 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
         QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(Contact.COMPANY_ID, companyId);
         queryWrapper.orderByAsc(Contact.SORT);
-        List<Contact> contact = this.list(queryWrapper);
-        if (ObjectUtils.isEmpty(contact)) {
+        List<Contact> contacts = this.list(queryWrapper);
+        if (ObjectUtils.isEmpty(contacts)) {
             return ResponseEntity.success(Collections.emptyList());
         }
 
-        List<ResponseContactVo> bannerVos = contact.stream()
+        List<ResponseContactVo> bannerVos = contacts.stream()
                 .map(o -> Convert.convert(ResponseContactVo.class, o))
                 .collect(Collectors.toList());
 

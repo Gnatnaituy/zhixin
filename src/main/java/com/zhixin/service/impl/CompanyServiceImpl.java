@@ -70,12 +70,12 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     public ResponseEntity listAll() {
         QueryWrapper<Company> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc(Company.SORT);
-        List<Company> company = this.list(queryWrapper);
-        if (ObjectUtils.isEmpty(company)) {
+        List<Company> companies = this.list(queryWrapper);
+        if (ObjectUtils.isEmpty(companies)) {
             return ResponseEntity.success(Collections.emptyList());
         }
 
-        List<ResponseCompanyVo> bannerVos = company.stream()
+        List<ResponseCompanyVo> bannerVos = companies.stream()
                 .map(o -> Convert.convert(ResponseCompanyVo.class, o))
                 .collect(Collectors.toList());
 
