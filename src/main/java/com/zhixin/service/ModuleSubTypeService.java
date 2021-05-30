@@ -1,5 +1,8 @@
 package com.zhixin.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhixin.entity.ModuleSubType;
+import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSubTypeSaveVo;
 import com.zhixin.vo.response.ResponseModuleSubTypeVo;
 
@@ -9,11 +12,9 @@ import java.util.List;
  * @author yutiantang
  * @create 2021/5/28 22:08
  */
-public interface ModuleSubTypeService {
+public interface ModuleSubTypeService extends IService<ModuleSubType> {
 
-    void save(RequestModuleSubTypeSaveVo saveVo);
+    ResponseEntity save(List<RequestModuleSubTypeSaveVo> saveVos);
 
-    void delete(Long id);
-
-    List<ResponseModuleSubTypeVo> list(Long typeId);
+    ResponseEntity listByModuleTypeId(Long moduleTypeId);
 }

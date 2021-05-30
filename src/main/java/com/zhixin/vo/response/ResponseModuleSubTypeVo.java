@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ResponseModuleSubTypeVo extends ResponseBaseVo {
 
-    private Long typeId;
+    private Long moduleTypeId;
 
     private String name;
 

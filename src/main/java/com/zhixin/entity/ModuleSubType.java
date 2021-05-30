@@ -13,9 +13,13 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class ModuleSubType extends BaseEntity {
 
-    private Long typeId;
+    private Long moduleTypeId;
 
     private String name;
 
     private Integer sort;
+
+    public static final String MODULE_TYPE_ID = "module_type_id";
+    public static final String NAME = "name";
+    public static final String SORT = "sort";
 }

@@ -68,12 +68,12 @@ create table module_type
 drop table if exists module_sub_type;
 create table module_sub_type
 (
-    id          int primary key auto_increment not null,
-    type_id     int                            not null,
-    name        varchar(255)                   not null,
-    sort        tinyint                        not null,
-    deleted     char(1)                        not null default '0',
-    create_time datetime                       not null default now(),
-    update_time datetime                       not null default now()
+    id             int primary key auto_increment not null,
+    module_type_id int                            not null,
+    name           varchar(255)                   not null,
+    sort           tinyint                        not null,
+    deleted        char(1)                        not null default '0',
+    create_time    datetime                       not null default now(),
+    update_time    datetime                       not null default now()
 );
 

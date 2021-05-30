@@ -11,7 +11,7 @@ public class RequestModuleSubTypeSaveVo {
 
     private Long id;
 
-    private Long typeId;
+    private Long moduleTypeId;
 
     private String name;
 
