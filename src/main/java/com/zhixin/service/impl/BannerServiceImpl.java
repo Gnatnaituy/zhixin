@@ -25,12 +25,6 @@ import java.util.stream.Collectors;
 @Service
 public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements BannerService {
 
-    private final BannerMapper bannerMapper;
-
-    public BannerServiceImpl(BannerMapper bannerMapper) {
-        this.bannerMapper = bannerMapper;
-    }
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity save(List<RequestBannerSaveVo> saveVos) {
@@ -40,13 +34,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
 
         List<Banner> updates = saveVos.stream()
                 .filter(o -> !ObjectUtils.isEmpty(o.getId()))
-                .map(o -> {
-                    Banner banner = new Banner();
-                    banner.setId(o.getId());
-                    banner.setImage(o.getImage());
-                    banner.setSort(o.getSort());
-                    return banner;
-                })
+                .map(o -> Convert.convert(Banner.class, o))
                 .collect(Collectors.toList());
         List<Long> retainedIds = saveVos.stream()
                 .map(RequestBannerSaveVo::getId)
@@ -54,13 +42,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
                 .collect(Collectors.toList());
         List<Banner> adds = saveVos.stream()
                 .filter(o -> ObjectUtils.isEmpty(o.getId()))
-                .map(o -> {
-                    Banner banner = new Banner();
-                    banner.setId(o.getId());
-                    banner.setImage(o.getImage());
-                    banner.setSort(o.getSort());
-                    return banner;
-                })
+                .map(o -> Convert.convert(Banner.class, o))
                 .collect(Collectors.toList());
 
         if (ObjectUtils.isEmpty(retainedIds)) {
@@ -84,7 +66,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
     public ResponseEntity listAll() {
         QueryWrapper<Banner> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc(Banner.SORT);
-        List<Banner> banners = bannerMapper.selectList(queryWrapper);
+        List<Banner> banners = this.list(queryWrapper);
         if (ObjectUtils.isEmpty(banners)) {
             return ResponseEntity.success(Collections.emptyList());
         }

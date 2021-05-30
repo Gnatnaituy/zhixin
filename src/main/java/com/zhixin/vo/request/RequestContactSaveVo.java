@@ -11,6 +11,10 @@ public class RequestContactSaveVo {
 
     private Long id;
 
+    private Long companyId;
+
+    private String title;
+
     private String name;
 
     private String position;

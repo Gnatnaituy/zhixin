@@ -27,6 +27,7 @@ create table contact
 (
     id          int primary key auto_increment not null,
     company_id  int                            not null,
+    title       varchar(255)                   not null,
     name        varchar(255)                   not null,
     position    varchar(255)                   null,
     phone       varchar(255)                   null,

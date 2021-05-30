@@ -15,6 +15,8 @@ public class Contact extends BaseEntity {
 
     private Long companyId;
 
+    private String title;
+
     private String name;
 
     private String position;
@@ -24,4 +26,12 @@ public class Contact extends BaseEntity {
     private String email;
 
     private Integer sort;
+
+    public static final String COMPANY_ID = "company_id";
+    public static final String TITLE = "title";
+    public static final String NAME = "name";
+    public static final String POSITION = "position";
+    public static final String PHONE = "phone";
+    public static final String EMAIL = "email";
+    public static final String SORT = "sort";
 }

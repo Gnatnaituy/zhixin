@@ -1,5 +1,6 @@
 package com.zhixin.service;
 
+import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestCompanySaveVo;
 import com.zhixin.vo.response.ResponseCompanyVo;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface CompanyService {
 
-    void save(RequestCompanySaveVo saveVo);
+    ResponseEntity save(RequestCompanySaveVo saveVo);
 
     void delete(Long id);
 
