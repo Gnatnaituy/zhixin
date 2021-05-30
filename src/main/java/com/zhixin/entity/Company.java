@@ -14,9 +14,14 @@ public class Company extends BaseEntity {
 
     private String name;
 
-    private String desc;
+    private String description;
 
     private String location;
 
     private Integer sort;
+
+    public static final String NAME = "name";
+    public static final String DESCRIPTION = "description";
+    public static final String LOCATION = "location";
+    public static final String SORT = "sort";
 }

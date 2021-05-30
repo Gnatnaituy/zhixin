@@ -15,6 +15,7 @@ import com.zhixin.vo.response.ResponseBannerVo;
 import com.zhixin.vo.response.ResponseContactVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> implements ContactService {
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public ResponseEntity save(List<RequestContactSaveVo> saveVos) {
         if (ObjectUtils.isEmpty(saveVos)) {
             return ResponseEntity.error(ErrorMessage.EMPTY_PARAMS);

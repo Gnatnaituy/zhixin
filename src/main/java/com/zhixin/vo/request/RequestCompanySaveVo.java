@@ -16,4 +16,6 @@ public class RequestCompanySaveVo {
     private String desc;
 
     private String location;
+
+    private Integer sort;
 }

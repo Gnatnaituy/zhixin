@@ -1,6 +1,7 @@
 package com.zhixin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhixin.entity.Company;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Component;
  */
 @Mapper
 @Component
-public interface CompanyMapper extends BaseMapper<CompanyMapper> {
+public interface CompanyMapper extends BaseMapper<Company> {
 }
