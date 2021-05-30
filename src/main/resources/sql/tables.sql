@@ -14,8 +14,11 @@ create table company
 (
     id          int primary key auto_increment not null,
     name        varchar(255)                   not null,
+    bio         varchar(255)                   null,
     description text                           null,
+    logo        varchar(255)                   not null,
     location    varchar(255)                   null,
+    is_primary  char(1)                        not null default '0',
     sort        tinyint                        not null,
     deleted     char(1)                        not null default '0',
     create_time datetime                       not null default now(),

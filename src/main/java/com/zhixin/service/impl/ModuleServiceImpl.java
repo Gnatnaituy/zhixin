@@ -79,8 +79,8 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         Page<Module> page = new Page<>(searchVo.getPageStart(), searchVo.getPageLength());
 
         QueryWrapper<Module> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(ObjectUtils.isEmpty(searchVo.getTypeId()), Module.TYPE_ID, searchVo.getTypeId());
-        queryWrapper.eq(ObjectUtils.isEmpty(searchVo.getSubTypeId()), Module.SUB_TYPE_ID, searchVo.getSubTypeId());
+        queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getTypeId()), Module.TYPE_ID, searchVo.getTypeId());
+        queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getSubTypeId()), Module.SUB_TYPE_ID, searchVo.getSubTypeId());
         queryWrapper.orderByDesc(Module.CREATE_TIME);
         Page<Module> modules = this.page(page, queryWrapper);
 

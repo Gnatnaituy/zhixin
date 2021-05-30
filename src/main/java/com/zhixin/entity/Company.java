@@ -14,9 +14,15 @@ public class Company extends BaseEntity {
 
     private String name;
 
+    private String bio;
+
     private String description;
 
+    private String logo;
+
     private String location;
+
+    private String isPrimary;
 
     private Integer sort;
 

@@ -13,9 +13,15 @@ public class RequestCompanySaveVo {
 
     private String name;
 
-    private String desc;
+    private String bio;
+
+    private String description;
+
+    private String logo;
 
     private String location;
+
+    private String isPrimary;
 
     private Integer sort;
 }
