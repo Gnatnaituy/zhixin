@@ -11,15 +11,15 @@ public class RequestModuleSaveVo {
 
     private Long id;
 
-    private Long type;
+    private Long typeId;
 
-    private Long subType;
+    private Long subTypeId;
 
     private String title;
 
-    private String image;
+    private String cover;
 
-    private String desc;
+    private String description;
 
     private String content;
 }

@@ -46,7 +46,7 @@ create table module
     sub_type_id int                            not null,
     title       varchar(255)                   not null,
     description varchar(255)                   null,
-    image       varchar(255)                   null,
+    cover       varchar(255)                   null,
     content     text                           not null,
     deleted     char(1)                        not null default '0',
     create_time datetime                       not null default now(),

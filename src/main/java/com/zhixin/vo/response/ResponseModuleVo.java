@@ -22,9 +22,9 @@ public class ResponseModuleVo extends ResponseBaseVo {
 
     private String title;
 
-    private String image;
+    private String cover;
 
-    private String desc;
+    private String description;
 
     private String content;
 }

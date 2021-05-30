@@ -7,6 +7,7 @@ import com.zhixin.vo.request.RequestModuleSubTypeSaveVo;
 import com.zhixin.vo.response.ResponseModuleSubTypeVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yutiantang
@@ -15,6 +16,8 @@ import java.util.List;
 public interface ModuleSubTypeService extends IService<ModuleSubType> {
 
     ResponseEntity save(List<RequestModuleSubTypeSaveVo> saveVos);
+
+    Map<Long, ResponseModuleSubTypeVo> listMap();
 
     ResponseEntity listByModuleTypeId(Long moduleTypeId);
 }

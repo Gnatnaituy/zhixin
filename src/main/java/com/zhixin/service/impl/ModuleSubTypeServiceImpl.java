@@ -3,6 +3,7 @@ package com.zhixin.service.impl;
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhixin.common.BaseEntity;
 import com.zhixin.consts.ErrorMessage;
 import com.zhixin.entity.ModuleSubType;
 import com.zhixin.entity.ModuleSubType;
@@ -20,6 +21,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -64,6 +66,21 @@ public class ModuleSubTypeServiceImpl extends ServiceImpl<ModuleSubTypeMapper, M
         }
 
         return ResponseEntity.success();
+    }
+
+    @Override
+    public Map<Long, ResponseModuleSubTypeVo> listMap() {
+        QueryWrapper<ModuleSubType> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByAsc(ModuleSubType.SORT);
+        List<ModuleSubType> moduleSubTypes = this.list(queryWrapper);
+        if (ObjectUtils.isEmpty(moduleSubTypes)) {
+            return Collections.emptyMap();
+        }
+
+        return moduleSubTypes.stream()
+                .collect(Collectors.toMap(BaseEntity::getId,
+                        o -> Convert.convert(ResponseModuleSubTypeVo.class, o),
+                        (o1, o2) -> o2));
     }
 
     @Override

@@ -20,7 +20,14 @@ public class Module extends BaseEntity {
 
     private String description;
 
-    private String image;
+    private String cover;
 
     private String content;
+
+    public static final String TYPE_ID = "type_id";
+    public static final String SUB_TYPE_ID = "sub_type_id";
+    public static final String TITLE = "title";
+    public static final String DESCRIPTION = "description";
+    public static final String COVER = "cover";
+    public static final String CONTENT = "content";
 }

@@ -9,7 +9,11 @@ import lombok.Data;
 @Data
 public class RequestModuleSearchVo {
 
-    private String type;
+    private Integer typeId;
 
-    private String subType;
+    private Integer subTypeId;
+
+    private Integer pageStart;
+
+    private Integer pageLength;
 }
