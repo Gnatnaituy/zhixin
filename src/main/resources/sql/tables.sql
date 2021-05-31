@@ -80,3 +80,18 @@ create table module_sub_type
     update_time    datetime                       not null default now()
 );
 
+drop table if exists sys_user;
+create table sys_user
+(
+    id          int primary key auto_increment not null,
+    name        varchar(16)                    null,
+    username    varchar(16) unique             not null,
+    password    varchar(255)                   not null,
+    position    varchar(64)                    null,
+    email       varchar(64)                    null,
+    phone       varchar(64)                    null,
+    deleted     char(1)                        not null default '0',
+    create_time datetime                       not null default now(),
+    update_time datetime                       not null default now()
+)
+
