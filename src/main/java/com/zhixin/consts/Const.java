@@ -10,4 +10,7 @@ public class Const {
 
     public static final Integer UNDELETED = 0;
     public static final Integer DELETED = 1;
+
+    public static final String YES = "1";
+    public static final String NO = "0";
 }

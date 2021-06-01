@@ -3,6 +3,7 @@ package com.zhixin.controller;
 import com.zhixin.service.BannerService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestBannerSaveVo;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

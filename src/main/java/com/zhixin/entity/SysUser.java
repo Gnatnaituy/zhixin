@@ -23,4 +23,11 @@ public class SysUser extends BaseEntity {
     private String email;
 
     private String phone;
+
+    public static final String NAME = "name";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String POSITION = "position";
+    public static final String EMAIL = "email";
+    public static final String PHONE = "phone";
 }

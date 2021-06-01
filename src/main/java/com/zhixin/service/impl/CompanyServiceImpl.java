@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhixin.consts.ErrorMessage;
 import com.zhixin.entity.Company;
-import com.zhixin.entity.Company;
 import com.zhixin.mapper.CompanyMapper;
 import com.zhixin.service.CompanyService;
+import com.zhixin.service.ContactService;
 import com.zhixin.vo.common.ResponseEntity;
-import com.zhixin.vo.request.RequestCompanySaveVo;
 import com.zhixin.vo.request.RequestCompanySaveVo;
 import com.zhixin.vo.response.ResponseCompanyVo;
 import com.zhixin.vo.response.ResponseContactVo;
@@ -20,6 +19,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +28,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements CompanyService {
+
+    @Autowired
+    private ContactService contactService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -75,8 +78,15 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
             return ResponseEntity.success(Collections.emptyList());
         }
 
+        List<Long> companyIds = companies.stream().map(Company::getId).collect(Collectors.toList());
+        Map<Long, List<ResponseContactVo>> contacts = contactService.listByCompanyIds(companyIds);
+
         List<ResponseCompanyVo> bannerVos = companies.stream()
-                .map(o -> Convert.convert(ResponseCompanyVo.class, o))
+                .map(o -> {
+                    ResponseCompanyVo companyVo = Convert.convert(ResponseCompanyVo.class, o);
+                    companyVo.setContacts(contacts.get(o.getId()));
+                    return companyVo;
+                })
                 .collect(Collectors.toList());
 
         return ResponseEntity.success(bannerVos);

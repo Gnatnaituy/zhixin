@@ -15,5 +15,9 @@ public class RequestModuleTypeSaveVo {
 
     private String background;
 
+    private String path;
+
+    private String showInHomePage;
+
     private Integer sort;
 }

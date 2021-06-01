@@ -4,6 +4,8 @@ import com.zhixin.common.ResponseBaseVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * @author yutiantang
  * @create 2021/5/28 23:16
@@ -25,4 +27,6 @@ public class ResponseCompanyVo extends ResponseBaseVo {
     private String isPrimary;
 
     private Integer sort;
+
+    private List<ResponseContactVo> contacts;
 }

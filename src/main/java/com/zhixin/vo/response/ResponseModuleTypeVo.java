@@ -16,5 +16,9 @@ public class ResponseModuleTypeVo extends ResponseBaseVo {
 
     private String background;
 
+    private String path;
+
+    private String showInHomePage;
+
     private Integer sort;
 }

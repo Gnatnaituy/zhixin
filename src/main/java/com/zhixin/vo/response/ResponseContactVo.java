@@ -12,6 +12,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ResponseContactVo extends ResponseBaseVo {
 
+    private Long companyId;
+
     private String name;
 
     private String position;

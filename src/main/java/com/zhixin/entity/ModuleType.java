@@ -17,6 +17,10 @@ public class ModuleType extends BaseEntity {
 
     private String background;
 
+    private String path;
+
+    private String showInHomePage;
+
     private Integer sort;
 
     public static final String NAME = "name";

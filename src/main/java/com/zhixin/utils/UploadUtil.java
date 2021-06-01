@@ -2,6 +2,7 @@ package com.zhixin.utils;
 
 import com.zhixin.consts.ErrorMessage;
 import com.zhixin.vo.common.ResponseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -15,6 +16,7 @@ import java.util.UUID;
  * @author yutiantang
  * @create 2021/5/29 23:28
  */
+@Slf4j
 @Component
 public class UploadUtil {
 
@@ -42,10 +44,11 @@ public class UploadUtil {
                 bos.write(bs, 0, len);
             }
         } catch (IOException e) {
+            log.error("上传失败: ", e);
             return ResponseEntity.error(ErrorMessage.UPLOAD_FAILED);
         }
 
-        return ResponseEntity.success(fileName);
+        return ResponseEntity.success(fileName.substring(path.length() - 1));
     }
 
     private String getYearAndMonth() {

@@ -4,22 +4,19 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhixin.consts.ErrorMessage;
-import com.zhixin.entity.Banner;
 import com.zhixin.entity.Contact;
 import com.zhixin.mapper.ContactMapper;
 import com.zhixin.service.ContactService;
 import com.zhixin.vo.common.ResponseEntity;
-import com.zhixin.vo.request.RequestBannerSaveVo;
 import com.zhixin.vo.request.RequestContactSaveVo;
-import com.zhixin.vo.response.ResponseBannerVo;
 import com.zhixin.vo.response.ResponseContactVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -81,5 +78,20 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
                 .collect(Collectors.toList());
 
         return ResponseEntity.success(bannerVos);
+    }
+
+    @Override
+    public Map<Long, List<ResponseContactVo>> listByCompanyIds(List<Long> companyIds) {
+        QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in(Contact.COMPANY_ID, companyIds);
+        queryWrapper.orderByAsc(Contact.SORT);
+        List<Contact> contacts = this.list(queryWrapper);
+        if (ObjectUtils.isEmpty(contacts)) {
+            return Collections.emptyMap();
+        }
+
+        return contacts.stream()
+                .map(o -> Convert.convert(ResponseContactVo.class, o))
+                .collect(Collectors.groupingBy(ResponseContactVo::getCompanyId));
     }
 }
