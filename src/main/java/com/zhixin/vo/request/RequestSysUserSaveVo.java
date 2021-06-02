@@ -1,5 +1,6 @@
 package com.zhixin.vo.request;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  * @create 2021/5/31 18:07
  */
 @Data
+@ApiModel
 public class RequestSysUserSaveVo {
 
     private Long id;

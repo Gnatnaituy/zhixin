@@ -1,5 +1,6 @@
 package com.zhixin.vo.common;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
  * @create 2021/5/29 23:35
  */
 @Data
+@ApiModel
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseEntity {

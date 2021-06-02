@@ -1,6 +1,7 @@
 package com.zhixin.vo.response;
 
 import com.zhixin.common.ResponseBaseVo;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @create 2021/5/28 22:11
  */
 @Data
+@ApiModel
 @EqualsAndHashCode(callSuper = true)
 public class ResponseModuleTypeVo extends ResponseBaseVo {
 

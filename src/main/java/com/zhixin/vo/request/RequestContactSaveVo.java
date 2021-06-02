@@ -1,5 +1,6 @@
 package com.zhixin.vo.request;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @create 2021/5/28 23:18
  */
 @Data
+@ApiModel
 public class RequestContactSaveVo {
 
     private Long id;

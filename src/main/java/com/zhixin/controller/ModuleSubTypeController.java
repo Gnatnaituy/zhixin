@@ -3,6 +3,8 @@ package com.zhixin.controller;
 import com.zhixin.service.ModuleSubTypeService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSubTypeSaveVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * @author yutiantang
  * @create 2021/5/28 22:10
  */
+@Api
 @RestController
 @RequestMapping(value = "/module_sub_type")
 public class ModuleSubTypeController {
@@ -21,11 +24,13 @@ public class ModuleSubTypeController {
         this.moduleSubTypeService = moduleSubTypeService;
     }
 
+    @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody List<RequestModuleSubTypeSaveVo> saveVos) {
         return moduleSubTypeService.save(saveVos);
     }
 
+    @ApiOperation(value = "xxx")
     @GetMapping(value = "/list/{moduleTypeId}")
     public ResponseEntity list(@PathVariable("moduleTypeId") Long moduleTypeId) {
         return moduleSubTypeService.listByModuleTypeId(moduleTypeId);
