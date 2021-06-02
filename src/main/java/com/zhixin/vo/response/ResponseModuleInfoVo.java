@@ -6,11 +6,11 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @author yutiantang
- * @create 2021/5/28 22:02
+ * @create 2021/6/2 17:09
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ResponseModuleVo extends ResponseBaseVo {
+public class ResponseModuleInfoVo extends ResponseBaseVo {
 
     private Long typeId;
 
@@ -27,6 +27,4 @@ public class ResponseModuleVo extends ResponseBaseVo {
     private String cover;
 
     private String description;
-
-    private String content;
 }

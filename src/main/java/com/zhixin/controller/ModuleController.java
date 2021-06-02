@@ -32,6 +32,6 @@ public class ModuleController {
 
     @PostMapping(value = "/list")
     public ResponseEntity list(@RequestBody RequestModuleSearchVo searchVo) {
-        return moduleService.list(searchVo);
+        return ResponseEntity.success(moduleService.page(searchVo));
     }
 }

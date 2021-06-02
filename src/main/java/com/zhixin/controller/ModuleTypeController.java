@@ -30,4 +30,9 @@ public class ModuleTypeController {
     public ResponseEntity list() {
         return moduleTypeService.listAll();
     }
+
+    @GetMapping(value = "/list/in-home")
+    public ResponseEntity listInHome() {
+        return ResponseEntity.success(moduleTypeService.listInHome());
+    }
 }

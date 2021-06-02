@@ -32,8 +32,6 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
 
     @Autowired
     private ContactService contactService;
-    @Autowired
-    private ContactItemService contactItemService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)

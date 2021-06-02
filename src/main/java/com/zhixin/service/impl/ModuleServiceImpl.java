@@ -2,11 +2,11 @@ package com.zhixin.service.impl;
 
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhixin.consts.ErrorMessage;
 import com.zhixin.entity.Module;
-import com.zhixin.entity.ModuleType;
 import com.zhixin.mapper.ModuleMapper;
 import com.zhixin.service.ModuleService;
 import com.zhixin.service.ModuleSubTypeService;
@@ -14,9 +14,9 @@ import com.zhixin.service.ModuleTypeService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
+import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleSubTypeVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
-import com.zhixin.vo.response.ResponseModuleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,13 +31,10 @@ import java.util.Map;
 @Service
 public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> implements ModuleService {
 
-    private final ModuleTypeService moduleTypeService;
-    private final ModuleSubTypeService moduleSubTypeService;
-
-    public ModuleServiceImpl(ModuleTypeService moduleTypeService, ModuleSubTypeService moduleSubTypeService) {
-        this.moduleTypeService = moduleTypeService;
-        this.moduleSubTypeService = moduleSubTypeService;
-    }
+    @Autowired
+    private ModuleTypeService moduleTypeService;
+    @Autowired
+    private ModuleSubTypeService moduleSubTypeService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -65,10 +62,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
     }
 
     @Override
-    public ResponseEntity list(RequestModuleSearchVo searchVo) {
-        if (ObjectUtils.isEmpty(searchVo)) {
-            return ResponseEntity.error(ErrorMessage.EMPTY_PARAMS);
-        }
+    public IPage<ResponseModuleInfoVo> page(RequestModuleSearchVo searchVo) {
         if (ObjectUtils.isEmpty(searchVo.getPageStart())) {
             searchVo.setPageStart(0);
         }
@@ -87,10 +81,11 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         Map<Long, ResponseModuleTypeVo> typeMap = moduleTypeService.listMap();
         Map<Long, ResponseModuleSubTypeVo> subTypeMap = moduleSubTypeService.listMap();
 
-        modules.convert(o -> {
-            ResponseModuleVo moduleVo = Convert.convert(ResponseModuleVo.class, o);
+        return modules.convert(o -> {
+            ResponseModuleInfoVo moduleVo = Convert.convert(ResponseModuleInfoVo.class, o);
             ResponseModuleTypeVo type = typeMap.get(o.getTypeId());
             if (!ObjectUtils.isEmpty(type)) {
+                moduleVo.setTypePath(type.getPath());
                 moduleVo.setTypeName(type.getName());
             }
             ResponseModuleSubTypeVo subType = subTypeMap.get(o.getSubTypeId());
@@ -99,7 +94,5 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
             }
             return moduleVo;
         });
-
-        return ResponseEntity.success(modules);
     }
 }

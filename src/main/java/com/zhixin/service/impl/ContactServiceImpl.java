@@ -88,15 +88,15 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
         List<Long> contactIds = contacts.stream().map(BaseEntity::getId).collect(Collectors.toList());
         Map<Long, List<ResponseContactItemVo>> contactItems = contactItemService.listByContactIds(contactIds);
 
-        List<ResponseContactVo> bannerVos = contacts.stream()
+        List<ResponseContactVo> contactVos = contacts.stream()
                 .map(o -> {
                     ResponseContactVo contactVo = Convert.convert(ResponseContactVo.class, o);
-                    contactVo.setContactItems(contactItems.get(o.getId()));
+                    contactVo.setItems(contactItems.get(o.getId()));
                     return contactVo;
                 })
                 .collect(Collectors.toList());
 
-        return ResponseEntity.success(bannerVos);
+        return ResponseEntity.success(contactVos);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
         return contacts.stream()
                 .map(o -> {
                     ResponseContactVo contactVo = Convert.convert(ResponseContactVo.class, o);
-                    contactVo.setContactItems(contactItems.get(o.getId()));
+                    contactVo.setItems(contactItems.get(o.getId()));
                     return contactVo;
                 })
                 .collect(Collectors.groupingBy(ResponseContactVo::getCompanyId));

@@ -4,6 +4,8 @@ import com.zhixin.common.ResponseBaseVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * @author yutiantang
  * @create 2021/5/28 22:11
@@ -19,6 +21,8 @@ public class ResponseModuleTypeVo extends ResponseBaseVo {
     private String path;
 
     private String showInHomePage;
+
+    List<ResponseModuleInfoVo> modules;
 
     private Integer sort;
 }

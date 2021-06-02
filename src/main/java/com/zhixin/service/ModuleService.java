@@ -1,13 +1,12 @@
 package com.zhixin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhixin.entity.Module;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
-import com.zhixin.vo.response.ResponseModuleVo;
-
-import java.util.List;
+import com.zhixin.vo.response.ResponseModuleInfoVo;
 
 /**
  * @author yutiantang
@@ -19,5 +18,5 @@ public interface ModuleService extends IService<Module> {
 
     ResponseEntity delete(Long id);
 
-    ResponseEntity list(RequestModuleSearchVo searchVo);
+    IPage<ResponseModuleInfoVo> page(RequestModuleSearchVo searchVo);
 }

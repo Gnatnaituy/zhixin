@@ -2,27 +2,26 @@ package com.zhixin.service.impl;
 
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhixin.common.BaseEntity;
+import com.zhixin.consts.Const;
 import com.zhixin.consts.ErrorMessage;
 import com.zhixin.entity.ModuleType;
-import com.zhixin.entity.ModuleType;
 import com.zhixin.mapper.ModuleTypeMapper;
+import com.zhixin.service.ModuleService;
 import com.zhixin.service.ModuleTypeService;
 import com.zhixin.vo.common.ResponseEntity;
+import com.zhixin.vo.request.RequestModuleSearchVo;
 import com.zhixin.vo.request.RequestModuleTypeSaveVo;
-import com.zhixin.vo.request.RequestModuleTypeSaveVo;
-import com.zhixin.vo.response.ResponseModuleSubTypeVo;
-import com.zhixin.vo.response.ResponseModuleTypeVo;
+import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +30,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleType> implements ModuleTypeService {
+
+    @Autowired
+    private ModuleService moduleService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -83,6 +85,30 @@ public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleT
                 .collect(Collectors.toList());
 
         return ResponseEntity.success(bannerVos);
+    }
+
+    @Override
+    public List<ResponseModuleTypeVo> listInHome() {
+        QueryWrapper<ModuleType> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(ModuleType.SHOW_IN_HOME_PAGE, Const.YES);
+        queryWrapper.orderByAsc(ModuleType.SORT);
+        List<ModuleType> moduleTypes = this.list(queryWrapper);
+        if (ObjectUtils.isEmpty(moduleTypes)) {
+            return Collections.emptyList();
+        }
+        RequestModuleSearchVo searchVo = new RequestModuleSearchVo();
+        searchVo.setPageStart(0);
+        searchVo.setPageLength(6);
+        List<ResponseModuleTypeVo> typeModules = new ArrayList<>();
+        for (ModuleType type : moduleTypes) {
+            searchVo.setTypeId(type.getId());
+            IPage<ResponseModuleInfoVo> page = moduleService.page(searchVo);
+            ResponseModuleTypeVo typeVo = Convert.convert(ResponseModuleTypeVo.class, type);
+            typeVo.setModules(page.getRecords());
+            typeModules.add(typeVo);
+        }
+
+        return typeModules;
     }
 
     @Override
