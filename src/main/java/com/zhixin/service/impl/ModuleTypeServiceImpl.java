@@ -88,6 +88,16 @@ public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleT
     }
 
     @Override
+    public ResponseModuleTypeVo detail(Long id) {
+        ModuleType moduleType = this.getById(id);
+        if (ObjectUtils.isEmpty(moduleType)) {
+            return new ResponseModuleTypeVo();
+        }
+
+        return Convert.convert(ResponseModuleTypeVo.class, moduleType);
+    }
+
+    @Override
     public List<ResponseModuleTypeVo> listInHome() {
         QueryWrapper<ModuleType> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(ModuleType.SHOW_IN_HOME_PAGE, Const.YES);

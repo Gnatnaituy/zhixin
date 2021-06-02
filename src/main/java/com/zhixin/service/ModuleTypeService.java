@@ -6,6 +6,7 @@ import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleTypeSaveVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
+import com.zhixin.vo.response.ResponseModuleVo;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ public interface ModuleTypeService extends IService<ModuleType> {
     ResponseEntity save(List<RequestModuleTypeSaveVo> saveVos);
 
     ResponseEntity listAll();
+
+    ResponseModuleTypeVo detail(Long id);
 
     List<ResponseModuleTypeVo> listInHome();
 

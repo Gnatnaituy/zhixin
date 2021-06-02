@@ -35,4 +35,9 @@ public class ModuleTypeController {
     public ResponseEntity listInHome() {
         return ResponseEntity.success(moduleTypeService.listInHome());
     }
+
+    @GetMapping(value = "/detail/{id}")
+    public ResponseEntity detail(@PathVariable("id") Long id) {
+        return ResponseEntity.success(moduleTypeService.detail(id));
+    }
 }
