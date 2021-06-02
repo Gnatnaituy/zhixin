@@ -7,6 +7,7 @@ import com.zhixin.consts.ErrorMessage;
 import com.zhixin.entity.Company;
 import com.zhixin.mapper.CompanyMapper;
 import com.zhixin.service.CompanyService;
+import com.zhixin.service.ContactItemService;
 import com.zhixin.service.ContactService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestCompanySaveVo;
@@ -31,6 +32,8 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
 
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private ContactItemService contactItemService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)

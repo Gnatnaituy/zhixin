@@ -2,6 +2,8 @@ package com.zhixin.vo.request;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author yutiantang
  * @create 2021/5/28 23:18
@@ -19,9 +21,7 @@ public class RequestContactSaveVo {
 
     private String position;
 
-    private String phone;
-
-    private String email;
-
     private Integer sort;
+
+    List<RequestContactItemSaveVo> contactItems;
 }

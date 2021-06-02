@@ -4,23 +4,19 @@ import com.zhixin.common.ResponseBaseVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 /**
  * @author yutiantang
- * @create 2021/5/28 23:16
+ * @create 2021/6/2 00:31
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ResponseContactVo extends ResponseBaseVo {
+public class ResponseContactItemVo extends ResponseBaseVo {
 
-    private Long companyId;
+    private Long contactId;
 
     private String name;
 
-    private String position;
+    private String value;
 
     private Integer sort;
-
-    List<ResponseContactItemVo> contactItems;
 }

@@ -3,6 +3,7 @@ package com.zhixin.controller;
 import com.zhixin.service.ContactService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestContactSaveVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +16,8 @@ import java.util.List;
 @RequestMapping(value = "/contact")
 public class ContactController {
 
-    private final ContactService contactService;
-
-    public ContactController(ContactService contactService) {
-        this.contactService = contactService;
-    }
+    @Autowired
+    private ContactService contactService;
 
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody List<RequestContactSaveVo> saveVos) {
