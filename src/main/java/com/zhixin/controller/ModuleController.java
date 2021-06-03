@@ -40,4 +40,10 @@ public class ModuleController {
     public ResponseEntity list(@RequestBody RequestModuleSearchVo searchVo) {
         return ResponseEntity.success(moduleService.page(searchVo));
     }
+
+    @ApiOperation(value = "xxx")
+    @GetMapping(value = "/detail/{moduleId}")
+    public ResponseEntity detail(@PathVariable("moduleId") Long moduleId) {
+        return ResponseEntity.success(moduleService.detail(moduleId));
+    }
 }

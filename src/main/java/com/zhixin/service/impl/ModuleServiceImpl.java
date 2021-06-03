@@ -17,6 +17,7 @@ import com.zhixin.vo.request.RequestModuleSearchVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleSubTypeVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
+import com.zhixin.vo.response.ResponseModuleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,5 +95,15 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
             }
             return moduleVo;
         });
+    }
+
+    @Override
+    public ResponseModuleVo detail(Long moduleId) {
+        Module module = this.getById(moduleId);
+        if (ObjectUtils.isEmpty(module)) {
+            return new ResponseModuleVo();
+        }
+
+        return Convert.convert(ResponseModuleVo.class, module);
     }
 }

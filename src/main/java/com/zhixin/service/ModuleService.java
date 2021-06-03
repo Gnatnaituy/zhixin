@@ -7,6 +7,7 @@ import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
+import com.zhixin.vo.response.ResponseModuleVo;
 
 /**
  * @author yutiantang
@@ -19,4 +20,6 @@ public interface ModuleService extends IService<Module> {
     ResponseEntity delete(Long id);
 
     IPage<ResponseModuleInfoVo> page(RequestModuleSearchVo searchVo);
+
+    ResponseModuleVo detail(Long moduleId);
 }
