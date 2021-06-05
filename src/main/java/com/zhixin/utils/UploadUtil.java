@@ -28,7 +28,7 @@ public class UploadUtil {
             return ResponseEntity.error(ErrorMessage.EMPTY_FILE);
         }
 
-        String filePath = path + "images/" + getYearAndMonth();
+        String filePath = path + "images" + File.separator + getYearAndMonth();
         File directory = new File(filePath);
         if (!directory.exists()) {
             directory.mkdirs();
