@@ -47,4 +47,10 @@ public class ModuleTypeController {
     public ResponseEntity detail(@PathVariable("id") Long id) {
         return ResponseEntity.success(moduleTypeService.detail(id));
     }
+
+    @ApiOperation(value = "xxx")
+    @GetMapping(value = "/detail_by_path/{path}")
+    public ResponseEntity detailByPath(@PathVariable("path") String path) {
+        return ResponseEntity.success(moduleTypeService.detailByPath(path));
+    }
 }

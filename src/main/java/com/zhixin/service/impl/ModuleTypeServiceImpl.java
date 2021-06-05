@@ -21,7 +21,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -90,6 +93,18 @@ public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleT
     @Override
     public ResponseModuleTypeVo detail(Long id) {
         ModuleType moduleType = this.getById(id);
+        if (ObjectUtils.isEmpty(moduleType)) {
+            return new ResponseModuleTypeVo();
+        }
+
+        return Convert.convert(ResponseModuleTypeVo.class, moduleType);
+    }
+
+    @Override
+    public ResponseModuleTypeVo detailByPath(String path) {
+        QueryWrapper<ModuleType> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(ModuleType.PATH, path);
+        ModuleType moduleType = this.getOne(queryWrapper);
         if (ObjectUtils.isEmpty(moduleType)) {
             return new ResponseModuleTypeVo();
         }

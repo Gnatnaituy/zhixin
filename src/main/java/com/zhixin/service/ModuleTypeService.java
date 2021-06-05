@@ -23,6 +23,8 @@ public interface ModuleTypeService extends IService<ModuleType> {
 
     ResponseModuleTypeVo detail(Long id);
 
+    ResponseModuleTypeVo detailByPath(String path);
+
     List<ResponseModuleTypeVo> listInHome();
 
     Map<Long, ResponseModuleTypeVo> listMap();
