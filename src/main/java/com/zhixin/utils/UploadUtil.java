@@ -48,7 +48,7 @@ public class UploadUtil {
             return ResponseEntity.error(ErrorMessage.UPLOAD_FAILED);
         }
 
-        return ResponseEntity.success(fileName.substring(path.length() - 1));
+        return ResponseEntity.success(fileName.substring(path.length() - File.separator.length()));
     }
 
     private String getYearAndMonth() {
