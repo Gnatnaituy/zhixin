@@ -19,7 +19,7 @@ public interface ModuleService extends IService<Module> {
 
     ResponseEntity delete(Long id);
 
-    IPage<ResponseModuleInfoVo> page(RequestModuleSearchVo searchVo);
+    IPage<ResponseModuleVo> page(RequestModuleSearchVo searchVo);
 
     ResponseModuleVo detail(Long moduleId);
 }

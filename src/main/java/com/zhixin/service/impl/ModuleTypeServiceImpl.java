@@ -16,6 +16,7 @@ import com.zhixin.vo.request.RequestModuleSearchVo;
 import com.zhixin.vo.request.RequestModuleTypeSaveVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
+import com.zhixin.vo.response.ResponseModuleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -127,7 +128,7 @@ public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleT
         List<ResponseModuleTypeVo> typeModules = new ArrayList<>();
         for (ModuleType type : moduleTypes) {
             searchVo.setTypeId(type.getId());
-            IPage<ResponseModuleInfoVo> page = moduleService.page(searchVo);
+            IPage<ResponseModuleVo> page = moduleService.page(searchVo);
             ResponseModuleTypeVo typeVo = Convert.convert(ResponseModuleTypeVo.class, type);
             typeVo.setModules(page.getRecords());
             typeModules.add(typeVo);

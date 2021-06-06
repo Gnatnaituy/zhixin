@@ -63,7 +63,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
     }
 
     @Override
-    public IPage<ResponseModuleInfoVo> page(RequestModuleSearchVo searchVo) {
+    public IPage<ResponseModuleVo> page(RequestModuleSearchVo searchVo) {
         if (ObjectUtils.isEmpty(searchVo.getPageStart())) {
             searchVo.setPageStart(0);
         }
@@ -83,7 +83,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         Map<Long, ResponseModuleSubTypeVo> subTypeMap = moduleSubTypeService.listMap();
 
         return modules.convert(o -> {
-            ResponseModuleInfoVo moduleVo = Convert.convert(ResponseModuleInfoVo.class, o);
+            ResponseModuleVo moduleVo = Convert.convert(ResponseModuleVo.class, o);
             ResponseModuleTypeVo type = typeMap.get(o.getTypeId());
             if (!ObjectUtils.isEmpty(type)) {
                 moduleVo.setTypePath(type.getPath());
