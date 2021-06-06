@@ -77,6 +77,7 @@ create table module_type
     background        varchar(255)                   not null,
     path              varchar(255)                   not null,
     show_in_home_page char(1)                        not null default '0',
+    show_sub_type_all char(1)                        not null default '0',
     sort              tinyint                        not null,
     deleted           char(1)                        not null default '0',
     create_time       datetime                       not null default now(),

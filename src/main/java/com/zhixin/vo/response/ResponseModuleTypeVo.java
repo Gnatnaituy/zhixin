@@ -24,6 +24,8 @@ public class ResponseModuleTypeVo extends ResponseBaseVo {
 
     private String showInHomePage;
 
+    private String showSubTypeAll;
+
     List<ResponseModuleInfoVo> modules;
 
     private Integer sort;

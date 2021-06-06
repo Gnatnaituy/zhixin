@@ -21,6 +21,8 @@ public class ModuleType extends BaseEntity {
 
     private String showInHomePage;
 
+    private String showSubTypeAll;
+
     private Integer sort;
 
     public static final String NAME = "name";
