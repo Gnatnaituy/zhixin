@@ -18,5 +18,7 @@ public class ResponseModuleSubTypeVo extends ResponseBaseVo {
 
     private String name;
 
+    private String expandModuleContent;
+
     private Integer sort;
 }

@@ -28,6 +28,7 @@ public class ModuleType extends BaseEntity {
     public static final String NAME = "name";
     public static final String PATH = "path";
     public static final String SHOW_IN_HOME_PAGE = "show_in_home_page";
+    public static final String SHOW_SUB_TYPE_ALL = "show_sub_type_all";
     public static final String BACKGROUND = "background";
     public static final String SORT = "sort";
 }

@@ -15,6 +15,8 @@ public class RequestModuleSubTypeSaveVo {
 
     private Long moduleTypeId;
 
+    private String expandModuleContent;
+
     private String name;
 
     private Integer sort;
