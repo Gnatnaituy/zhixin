@@ -18,6 +18,8 @@ create table company
     description text                           null,
     logo        varchar(255)                   not null,
     location    varchar(255)                   null,
+    lng         double                         null,
+    lat         double                         null,
     is_primary  char(1)                        not null default '0',
     sort        tinyint                        not null,
     deleted     char(1)                        not null default '0',

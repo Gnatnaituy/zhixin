@@ -22,6 +22,10 @@ public class Company extends BaseEntity {
 
     private String location;
 
+    private Double lng;
+
+    private Double lat;
+
     private String isPrimary;
 
     private Integer sort;

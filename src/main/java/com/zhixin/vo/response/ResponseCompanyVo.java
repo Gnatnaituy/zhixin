@@ -26,6 +26,10 @@ public class ResponseCompanyVo extends ResponseBaseVo {
 
     private String location;
 
+    private Double lng;
+
+    private Double lat;
+
     private String isPrimary;
 
     private Integer sort;
