@@ -33,36 +33,15 @@ public class ModuleSubTypeServiceImpl extends ServiceImpl<ModuleSubTypeMapper, M
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity save(List<RequestModuleSubTypeSaveVo> saveVos) {
-        if (ObjectUtils.isEmpty(saveVos)) {
+    public ResponseEntity save(RequestModuleSubTypeSaveVo saveVo) {
+        if (ObjectUtils.isEmpty(saveVo)) {
             return ResponseEntity.error(ErrorMessage.EMPTY_PARAMS);
         }
-
-        List<ModuleSubType> updates = saveVos.stream()
-                .filter(o -> !ObjectUtils.isEmpty(o.getId()))
-                .map(o -> Convert.convert(ModuleSubType.class, o))
-                .collect(Collectors.toList());
-        List<Long> retainedIds = saveVos.stream()
-                .map(RequestModuleSubTypeSaveVo::getId)
-                .filter(id -> !ObjectUtils.isEmpty(id))
-                .collect(Collectors.toList());
-        List<ModuleSubType> adds = saveVos.stream()
-                .filter(o -> ObjectUtils.isEmpty(o.getId()))
-                .map(o -> Convert.convert(ModuleSubType.class, o))
-                .collect(Collectors.toList());
-
-        if (ObjectUtils.isEmpty(retainedIds)) {
-            this.remove(new QueryWrapper<>());
+        ModuleSubType moduleSubType = Convert.convert(ModuleSubType.class, saveVo);
+        if (ObjectUtils.isEmpty(moduleSubType.getId())) {
+            this.save(moduleSubType);
         } else {
-            QueryWrapper<ModuleSubType> queryWrapper = new QueryWrapper<>();
-            queryWrapper.notIn(ModuleSubType.ID, retainedIds);
-            this.remove(queryWrapper);
-        }
-        if (!ObjectUtils.isEmpty(updates)) {
-            this.updateBatchById(updates, updates.size());
-        }
-        if (!ObjectUtils.isEmpty(adds)) {
-            this.saveBatch(adds);
+            this.updateById(moduleSubType);
         }
 
         return ResponseEntity.success();

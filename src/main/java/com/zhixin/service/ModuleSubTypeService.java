@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface ModuleSubTypeService extends IService<ModuleSubType> {
 
-    ResponseEntity save(List<RequestModuleSubTypeSaveVo> saveVos);
+    ResponseEntity save(RequestModuleSubTypeSaveVo saveVo);
 
     Map<Long, ResponseModuleSubTypeVo> listMap();
 

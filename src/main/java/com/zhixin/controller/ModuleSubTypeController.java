@@ -26,8 +26,8 @@ public class ModuleSubTypeController {
 
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
-    public ResponseEntity save(@RequestBody List<RequestModuleSubTypeSaveVo> saveVos) {
-        return moduleSubTypeService.save(saveVos);
+    public ResponseEntity save(@RequestBody RequestModuleSubTypeSaveVo saveVo) {
+        return moduleSubTypeService.save(saveVo);
     }
 
     @ApiOperation(value = "xxx")
