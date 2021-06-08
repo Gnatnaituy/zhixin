@@ -45,8 +45,11 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         }
 
         Module module = Convert.convert(Module.class, saveVo);
-
-        this.save(module);
+        if (ObjectUtils.isEmpty(module.getId())) {
+            this.save(module);
+        } else {
+            this.updateById(module);
+        }
 
         return ResponseEntity.success();
     }
