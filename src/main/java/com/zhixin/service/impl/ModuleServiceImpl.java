@@ -45,6 +45,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         }
 
         Module module = Convert.convert(Module.class, saveVo);
+        module.setContent(module.getContent().replaceAll("\"images", "\"/images"));
         if (ObjectUtils.isEmpty(module.getId())) {
             this.save(module);
         } else {
