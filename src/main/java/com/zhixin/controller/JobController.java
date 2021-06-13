@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api
 @RestController
-@RequestMapping(value = "/contact")
+@RequestMapping(value = "/job")
 public class JobController {
 
     @Autowired
