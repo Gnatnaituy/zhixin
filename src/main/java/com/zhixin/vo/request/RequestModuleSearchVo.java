@@ -1,7 +1,9 @@
 package com.zhixin.vo.request;
 
+import com.zhixin.vo.common.RequestSearchVo;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author yutiantang
@@ -9,13 +11,10 @@ import lombok.Data;
  */
 @Data
 @ApiModel
-public class RequestModuleSearchVo {
+@EqualsAndHashCode(callSuper = true)
+public class RequestModuleSearchVo extends RequestSearchVo {
 
     private Long typeId;
 
     private Long subTypeId;
-
-    private Integer pageStart;
-
-    private Integer pageLength;
 }

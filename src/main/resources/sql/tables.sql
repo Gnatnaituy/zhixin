@@ -110,5 +110,16 @@ create table sys_user
     deleted     char(1)                        not null default '0',
     create_time datetime                       not null default now(),
     update_time datetime                       not null default now()
+);
+
+drop table if exists job;
+create table job
+(
+    id          int primary key auto_increment not null,
+    title       varchar(255)                   null,
+    content     text                           null,
+    deleted     char(1)                        not null default '0',
+    create_time datetime                       not null default now(),
+    update_time datetime                       not null default now()
 )
 
