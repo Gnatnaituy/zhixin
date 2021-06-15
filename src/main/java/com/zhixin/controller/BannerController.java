@@ -5,7 +5,6 @@ import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestBannerSaveVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

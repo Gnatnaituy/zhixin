@@ -13,4 +13,6 @@ public class Const {
 
     public static final String YES = "1";
     public static final String NO = "0";
+
+    public static final String PW_SALT = "zhixin_passwords";
 }
