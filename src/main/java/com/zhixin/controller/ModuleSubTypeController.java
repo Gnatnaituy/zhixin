@@ -35,4 +35,11 @@ public class ModuleSubTypeController {
     public ResponseEntity list(@PathVariable("moduleTypeId") Long moduleTypeId) {
         return moduleSubTypeService.listByModuleTypeId(moduleTypeId);
     }
+
+    @ApiOperation(value = "删除子模块")
+    @DeleteMapping(value = "/{moduleSubTypeId}")
+    public ResponseEntity delete(@PathVariable("moduleSubTypeId") Long moduleSubTypeId) {
+        moduleSubTypeService.delete(moduleSubTypeId);
+        return ResponseEntity.success();
+    }
 }

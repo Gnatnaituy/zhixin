@@ -48,6 +48,12 @@ public class ModuleSubTypeServiceImpl extends ServiceImpl<ModuleSubTypeMapper, M
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long subTypeId) {
+        this.removeById(subTypeId);
+    }
+
+    @Override
     public Map<Long, ResponseModuleSubTypeVo> listMap() {
         QueryWrapper<ModuleSubType> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc(ModuleSubType.SORT);

@@ -17,6 +17,8 @@ public interface ModuleSubTypeService extends IService<ModuleSubType> {
 
     ResponseEntity save(RequestModuleSubTypeSaveVo saveVo);
 
+    void delete(Long subTypeId);
+
     Map<Long, ResponseModuleSubTypeVo> listMap();
 
     ResponseEntity listByModuleTypeId(Long moduleTypeId);
