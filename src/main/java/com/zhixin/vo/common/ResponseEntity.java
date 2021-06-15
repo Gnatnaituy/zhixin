@@ -37,7 +37,7 @@ public class ResponseEntity {
 
     public static ResponseEntity error(String message) {
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.success = true;
+        responseEntity.success = false;
         responseEntity.message = message;
 
         return responseEntity;

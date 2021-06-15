@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api
 @RestController
-@RequestMapping(value = "sys_user")
+@RequestMapping(value = "/sys_user")
 public class SysUserController {
 
     private final SysUserService sysUserService;
@@ -26,6 +26,12 @@ public class SysUserController {
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody RequestSysUserSaveVo saveVo) {
         return sysUserService.save(saveVo);
+    }
+
+    @ApiOperation(value = "删除用户")
+    @DeleteMapping(value = "/{sysUserId}")
+    public ResponseEntity delete(@PathVariable("sysUserId") Long sysUserId) {
+        return sysUserService.delete(sysUserId);
     }
 
     @ApiOperation(value = "xxx")

@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.BannerService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestBannerSaveVo;
@@ -30,6 +31,7 @@ public class BannerController {
         return bannerService.save(saveVos);
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @GetMapping(value = "/list")
     public ResponseEntity list() {

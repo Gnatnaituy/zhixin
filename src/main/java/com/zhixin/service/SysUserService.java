@@ -11,7 +11,15 @@ import com.zhixin.vo.request.RequestSysUserSaveVo;
  */
 public interface SysUserService extends IService<SysUser> {
 
+    ResponseEntity login(String username, String password);
+
+    ResponseEntity logout(String token);
+
+    ResponseEntity checkToken(String token);
+
     ResponseEntity save(RequestSysUserSaveVo saveVo);
+
+    ResponseEntity delete(Long id);
 
     ResponseEntity listAll();
 }

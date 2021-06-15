@@ -102,7 +102,7 @@ create table sys_user
 (
     id          int primary key auto_increment not null,
     name        varchar(16)                    null,
-    username    varchar(16) unique             not null,
+    username    varchar(16)                    not null,
     password    varchar(255)                   not null,
     position    varchar(64)                    null,
     email       varchar(64)                    null,
