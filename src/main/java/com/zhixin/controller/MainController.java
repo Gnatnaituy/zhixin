@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.SysUserService;
 import com.zhixin.vo.common.ResponseEntity;
 import io.swagger.annotations.Api;
@@ -29,6 +30,7 @@ public class MainController {
         return sysUserService.login(username, password);
     }
 
+    @LoginRequired
     @ApiOperation(value = "登出")
     @PostMapping(value = "/logout")
     public ResponseEntity login(@RequestParam("token") String token) {

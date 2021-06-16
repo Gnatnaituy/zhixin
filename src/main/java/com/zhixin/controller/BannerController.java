@@ -25,6 +25,7 @@ public class BannerController {
         this.bannerService = bannerService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody List<RequestBannerSaveVo> saveVos) {

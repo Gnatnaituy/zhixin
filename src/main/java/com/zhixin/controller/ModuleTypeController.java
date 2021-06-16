@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.ModuleTypeService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleTypeSaveVo;
@@ -24,6 +25,7 @@ public class ModuleTypeController {
         this.moduleTypeService = moduleTypeService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody List<RequestModuleTypeSaveVo> saveVos) {

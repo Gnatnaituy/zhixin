@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.SysUserService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestSysUserSaveVo;
@@ -22,12 +23,14 @@ public class SysUserController {
         this.sysUserService = sysUserService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody RequestSysUserSaveVo saveVo) {
         return sysUserService.save(saveVo);
     }
 
+    @LoginRequired
     @ApiOperation(value = "删除用户")
     @DeleteMapping(value = "/{sysUserId}")
     public ResponseEntity delete(@PathVariable("sysUserId") Long sysUserId) {

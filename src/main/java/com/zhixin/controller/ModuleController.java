@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.ModuleService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
@@ -23,12 +24,14 @@ public class ModuleController {
         this.moduleService = moduleService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody RequestModuleSaveVo saveVo) {
         return moduleService.save(saveVo);
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @DeleteMapping(value = "/delete/{moduleId}")
     public ResponseEntity delete(@PathVariable("moduleId") Long moduleId) {

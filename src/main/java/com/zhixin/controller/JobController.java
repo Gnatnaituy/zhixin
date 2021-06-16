@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.JobService;
 import com.zhixin.vo.common.RequestSearchVo;
 import com.zhixin.vo.common.ResponseEntity;
@@ -24,6 +25,7 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody RequestJobSaveVo saveVo) {

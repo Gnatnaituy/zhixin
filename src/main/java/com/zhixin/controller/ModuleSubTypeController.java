@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.ModuleSubTypeService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSubTypeSaveVo;
@@ -24,6 +25,7 @@ public class ModuleSubTypeController {
         this.moduleSubTypeService = moduleSubTypeService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody RequestModuleSubTypeSaveVo saveVo) {
@@ -36,6 +38,7 @@ public class ModuleSubTypeController {
         return moduleSubTypeService.listByModuleTypeId(moduleTypeId);
     }
 
+    @LoginRequired
     @ApiOperation(value = "删除子模块")
     @DeleteMapping(value = "/{moduleSubTypeId}")
     public ResponseEntity delete(@PathVariable("moduleSubTypeId") Long moduleSubTypeId) {

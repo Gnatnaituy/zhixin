@@ -1,5 +1,6 @@
 package com.zhixin.controller;
 
+import com.zhixin.annotation.LoginRequired;
 import com.zhixin.service.CompanyService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestCompanySaveVo;
@@ -24,6 +25,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @LoginRequired
     @ApiOperation(value = "xxx")
     @PostMapping(value = "/save")
     public ResponseEntity save(@RequestBody List<RequestCompanySaveVo> saveVos) {
