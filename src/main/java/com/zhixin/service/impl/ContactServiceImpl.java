@@ -39,26 +39,31 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
             return ResponseEntity.error(ErrorMessage.EMPTY_PARAMS);
         }
 
+        Long companyId = saveVos.iterator().next().getCompanyId();
+
         List<Long> retainedIds = saveVos.stream()
                 .map(RequestContactSaveVo::getId)
                 .filter(id -> !ObjectUtils.isEmpty(id))
                 .collect(Collectors.toList());
 
         if (ObjectUtils.isEmpty(retainedIds)) {
-            this.remove(new QueryWrapper<>());
-            contactItemService.removeByExcludeContactIds(retainedIds);
+            QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(Contact.COMPANY_ID, companyId);
+            this.remove(queryWrapper);
+            contactItemService.removeByExcludeContactIds(retainedIds, companyId);
         } else {
             QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(Contact.COMPANY_ID, companyId);
             queryWrapper.notIn(Contact.ID, retainedIds);
             this.remove(queryWrapper);
-            contactItemService.removeByExcludeContactIds(retainedIds);
+            contactItemService.removeByExcludeContactIds(retainedIds, companyId);
             List<RequestContactSaveVo> updates = saveVos.stream()
                     .filter(o -> !ObjectUtils.isEmpty(o.getId()))
                     .collect(Collectors.toList());
             this.updateBatchById(updates.stream()
                     .map(o -> Convert.convert(Contact.class, o))
                     .collect(Collectors.toList()), updates.size());
-            updates.forEach(o -> contactItemService.save(o.getContactItems(), o.getId()));
+            updates.forEach(o -> contactItemService.save(o.getContactItems(), o.getId(), o.getCompanyId()));
         }
 
         List<RequestContactSaveVo> adds = saveVos.stream()
@@ -68,7 +73,7 @@ public class ContactServiceImpl extends ServiceImpl<ContactMapper, Contact> impl
             adds.forEach(o -> {
                 Contact contact = Convert.convert(Contact.class, o);
                 this.save(contact);
-                contactItemService.save(o.getContactItems(), contact.getId());
+                contactItemService.save(o.getContactItems(), contact.getId(), o.getCompanyId());
             });
         }
 

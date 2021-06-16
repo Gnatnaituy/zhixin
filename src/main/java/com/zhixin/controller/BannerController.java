@@ -31,7 +31,6 @@ public class BannerController {
         return bannerService.save(saveVos);
     }
 
-    @LoginRequired
     @ApiOperation(value = "xxx")
     @GetMapping(value = "/list")
     public ResponseEntity list() {

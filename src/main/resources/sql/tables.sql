@@ -45,6 +45,7 @@ drop table if exists contact_item;
 create table contact_item
 (
     id          int primary key auto_increment not null,
+    company_id  int                            not null,
     contact_id  int                            not null,
     name        varchar(255)                   null,
     value       varchar(255)                   null,

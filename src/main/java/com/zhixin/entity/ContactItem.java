@@ -12,6 +12,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ContactItem extends BaseEntity {
 
+    private Long companyId;
+
     private Long contactId;
 
     private String name;
@@ -20,6 +22,7 @@ public class ContactItem extends BaseEntity {
 
     private Integer sort;
 
+    public static final String COMPANY_ID = "company_id";
     public static final String CONTACT_ID = "contact_id";
     public static final String NAME = "name";
     public static final String VALUE = "value";

@@ -13,6 +13,8 @@ public class RequestContactItemSaveVo {
 
     private Long id;
 
+    private Long companyId;
+
     private Long contactId;
 
     private String name;

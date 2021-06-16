@@ -27,8 +27,9 @@ public class ContactItemServiceImpl extends ServiceImpl<ContactItemMapper, Conta
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity save(List<RequestContactItemSaveVo> contactItems, Long contactId) {
+    public ResponseEntity save(List<RequestContactItemSaveVo> contactItems, Long contactId, Long companyId) {
         contactItems.forEach(o -> o.setContactId(contactId));
+        contactItems.forEach(o -> o.setCompanyId(companyId));
 
         List<Long> updateIds = contactItems.stream()
                 .map(RequestContactItemSaveVo::getId)
@@ -36,6 +37,7 @@ public class ContactItemServiceImpl extends ServiceImpl<ContactItemMapper, Conta
                 .collect(Collectors.toList());
         if (!ObjectUtils.isEmpty(updateIds)) {
             QueryWrapper<ContactItem> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(ContactItem.COMPANY_ID, companyId);
             queryWrapper.eq(ContactItem.CONTACT_ID, contactId);
             queryWrapper.notIn(ContactItem.ID, updateIds);
             this.remove(queryWrapper);
@@ -46,6 +48,7 @@ public class ContactItemServiceImpl extends ServiceImpl<ContactItemMapper, Conta
             this.updateBatchById(updates);
         } else {
             QueryWrapper<ContactItem> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(ContactItem.COMPANY_ID, companyId);
             queryWrapper.eq(ContactItem.CONTACT_ID, contactId);
             this.remove(queryWrapper);
         }
@@ -62,8 +65,9 @@ public class ContactItemServiceImpl extends ServiceImpl<ContactItemMapper, Conta
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void removeByExcludeContactIds(List<Long> contactIds) {
+    public void removeByExcludeContactIds(List<Long> contactIds, Long companyId) {
         QueryWrapper<ContactItem> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(ContactItem.COMPANY_ID, companyId);
         if (!ObjectUtils.isEmpty(contactIds)) {
             queryWrapper.notIn(ContactItem.CONTACT_ID, contactIds);
         }

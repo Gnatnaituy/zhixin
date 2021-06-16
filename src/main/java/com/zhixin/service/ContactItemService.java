@@ -15,9 +15,9 @@ import java.util.Map;
  */
 public interface ContactItemService extends IService<ContactItem> {
 
-    ResponseEntity save(List<RequestContactItemSaveVo> contactItems, Long companyId);
+    ResponseEntity save(List<RequestContactItemSaveVo> contactItems, Long contactId, Long companyId);
 
-    void removeByExcludeContactIds(List<Long> contactIds);
+    void removeByExcludeContactIds(List<Long> contactIds, Long companyId);
 
     Map<Long, List<ResponseContactItemVo>> listByContactIds(List<Long> contactIds);
 }
