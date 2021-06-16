@@ -62,10 +62,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public ResponseEntity checkToken(String token) {
         LoginToken loginToken = tokens.get(token);
         if (ObjectUtils.isEmpty(loginToken)) {
-            return ResponseEntity.error("非法的Token!");
+            return ResponseEntity.error("INVALID_TOKEN");
         }
         if (loginToken.getExpireTime() < DateUtil.current()) {
-            return ResponseEntity.error("Token已过期!");
+            return ResponseEntity.error("TOKEN_EXPIRED");
         }
         loginToken.setExpireTime(DateUtil.current() + Const.TOKEN_EXPIRE_DURATION);
         tokens.put(token, loginToken);

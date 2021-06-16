@@ -37,7 +37,7 @@ public class LoginTokenAspect {
     public Object loginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
         String token = request.getHeader(Const.HEADER_TOKEN);
         if (ObjectUtils.isEmpty(token)) {
-            return ResponseEntity.error("请先登录!");
+            return ResponseEntity.error("LOGIN_FIRST");
         }
         ResponseEntity checkRes = sysUserService.checkToken(token);
         if (!checkRes.getSuccess()) {
