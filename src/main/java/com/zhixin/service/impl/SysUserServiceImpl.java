@@ -76,17 +76,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity save(RequestSysUserSaveVo saveVo) {
-        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(SysUser.USERNAME, saveVo.getUsername());
-        SysUser sysUser = this.getOne(queryWrapper);
-        if (!ObjectUtils.isEmpty(sysUser)) {
-            return ResponseEntity.error("用户名已存在!");
-        }
-        sysUser = Convert.convert(SysUser.class, saveVo);
-        sysUser.setPassword(AES.encrypt(Base64.decodeStr(saveVo.getPassword()), Const.PW_SALT));
-        if (ObjectUtils.isEmpty(sysUser.getId())) {
+        if (ObjectUtils.isEmpty(saveVo.getId())) {
+            QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(SysUser.USERNAME, saveVo.getUsername());
+            SysUser sysUser = this.getOne(queryWrapper);
+            if (!ObjectUtils.isEmpty(sysUser)) {
+                return ResponseEntity.error("用户名已存在!");
+            }
+            sysUser = Convert.convert(SysUser.class, saveVo);
+            sysUser.setPassword(AES.encrypt(Base64.decodeStr(saveVo.getPassword()), Const.PW_SALT));
             this.save(sysUser);
         } else {
+            SysUser sysUser = Convert.convert(SysUser.class, saveVo);
+            sysUser.setPassword(AES.encrypt(Base64.decodeStr(saveVo.getPassword()), Const.PW_SALT));
             this.updateById(sysUser);
         }
 
