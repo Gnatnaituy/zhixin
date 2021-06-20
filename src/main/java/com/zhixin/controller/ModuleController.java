@@ -5,9 +5,12 @@ import com.zhixin.service.ModuleService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
+import com.zhixin.vo.request.RequestModuleSortVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author yutiantang
@@ -48,5 +51,11 @@ public class ModuleController {
     @GetMapping(value = "/detail/{moduleId}")
     public ResponseEntity detail(@PathVariable("moduleId") Long moduleId) {
         return ResponseEntity.success(moduleService.detail(moduleId));
+    }
+
+    @ApiOperation(value = "文章排序")
+    @PostMapping(value = "/sort")
+    public ResponseEntity sort(@RequestBody List<RequestModuleSortVo> sortVos) {
+        return moduleService.sort(sortVos);
     }
 }

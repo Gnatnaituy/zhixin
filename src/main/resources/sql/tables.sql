@@ -122,5 +122,8 @@ create table job
     deleted     char(1)                        not null default '0',
     create_time datetime                       not null default now(),
     update_time datetime                       not null default now()
-)
+);
+
+# 文章添加排序
+alter table module add sort tinyint default 0 not null after content;
 

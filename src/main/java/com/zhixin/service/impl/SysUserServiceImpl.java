@@ -108,9 +108,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (ObjectUtils.isEmpty(sysUsers)) {
             return ResponseEntity.success(Collections.EMPTY_LIST);
         }
-        List<ResponseSysUserVo> sysUserVos = sysUsers.stream()
-                .map(o -> Convert.convert(ResponseSysUserVo.class, o))
-                .collect(Collectors.toList());
+        List<ResponseSysUserVo> sysUserVos = sysUsers.stream().map(o -> {
+            ResponseSysUserVo sysUserVo = Convert.convert(ResponseSysUserVo.class, o);
+            sysUserVo.setPassword(Base64.encode(AES.decrypt(o.getPassword(), Const.PW_SALT)));
+            return sysUserVo;
+        }).collect(Collectors.toList());
 
         return ResponseEntity.success(sysUserVos);
     }

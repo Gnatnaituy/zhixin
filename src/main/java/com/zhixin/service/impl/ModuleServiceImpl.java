@@ -14,6 +14,7 @@ import com.zhixin.service.ModuleTypeService;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
+import com.zhixin.vo.request.RequestModuleSortVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleSubTypeVo;
 import com.zhixin.vo.response.ResponseModuleTypeVo;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +38,8 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
     private ModuleTypeService moduleTypeService;
     @Autowired
     private ModuleSubTypeService moduleSubTypeService;
+    @Autowired
+    private ModuleMapper moduleMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -80,7 +84,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         QueryWrapper<Module> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getTypeId()), Module.TYPE_ID, searchVo.getTypeId());
         queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getSubTypeId()), Module.SUB_TYPE_ID, searchVo.getSubTypeId());
-        queryWrapper.orderByDesc(Module.CREATE_TIME);
+        queryWrapper.orderByAsc(Module.SORT);
         Page<Module> modules = this.page(page, queryWrapper);
 
         Map<Long, ResponseModuleTypeVo> typeMap = moduleTypeService.listMap();
@@ -109,5 +113,16 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         }
 
         return Convert.convert(ResponseModuleVo.class, module);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ResponseEntity sort(List<RequestModuleSortVo> sortVos) {
+        if (ObjectUtils.isEmpty(sortVos)) {
+            return ResponseEntity.success();
+        }
+        sortVos.forEach(o -> moduleMapper.updateSort(o.getId(), o.getSort()));
+
+        return ResponseEntity.success();
     }
 }

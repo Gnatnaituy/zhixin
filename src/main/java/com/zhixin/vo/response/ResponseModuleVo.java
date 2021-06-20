@@ -31,4 +31,6 @@ public class ResponseModuleVo extends ResponseBaseVo {
     private String description;
 
     private String content;
+
+    private Integer sort;
 }

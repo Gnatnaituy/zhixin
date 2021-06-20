@@ -6,8 +6,11 @@ import com.zhixin.entity.Module;
 import com.zhixin.vo.common.ResponseEntity;
 import com.zhixin.vo.request.RequestModuleSaveVo;
 import com.zhixin.vo.request.RequestModuleSearchVo;
+import com.zhixin.vo.request.RequestModuleSortVo;
 import com.zhixin.vo.response.ResponseModuleInfoVo;
 import com.zhixin.vo.response.ResponseModuleVo;
+
+import java.util.List;
 
 /**
  * @author yutiantang
@@ -22,4 +25,6 @@ public interface ModuleService extends IService<Module> {
     IPage<ResponseModuleVo> page(RequestModuleSearchVo searchVo);
 
     ResponseModuleVo detail(Long moduleId);
+
+    ResponseEntity sort(List<RequestModuleSortVo> sortVos);
 }

@@ -24,4 +24,6 @@ public class RequestModuleSaveVo {
     private String description;
 
     private String content;
+
+    private Integer sort;
 }

@@ -1,6 +1,7 @@
 package com.zhixin.service.impl;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ZipUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,6 +17,8 @@ import com.zhixin.vo.response.ResponseJobVo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+
+import java.io.File;
 
 /**
  * @author yutiantang
@@ -53,5 +56,9 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
         Page<Job> jobs = this.page(page, queryWrapper);
 
         return jobs.convert(o -> Convert.convert(ResponseJobVo.class, o));
+    }
+
+    public static void main(String[] args) {
+        ZipUtil.unzip(new File("/Users/ravooo/Downloads/esl-client.zip"), new File("/Users/ravooo/Downloads/aaaaa"));
     }
 }
