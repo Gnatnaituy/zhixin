@@ -17,4 +17,6 @@ public class RequestModuleSearchVo extends RequestSearchVo {
     private Long typeId;
 
     private Long subTypeId;
+
+    private String showInHomePage;
 }

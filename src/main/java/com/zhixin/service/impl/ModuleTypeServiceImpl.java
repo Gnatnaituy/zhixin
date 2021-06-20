@@ -124,7 +124,8 @@ public class ModuleTypeServiceImpl extends ServiceImpl<ModuleTypeMapper, ModuleT
         }
         RequestModuleSearchVo searchVo = new RequestModuleSearchVo();
         searchVo.setPageStart(0);
-        searchVo.setPageLength(6);
+        searchVo.setPageLength(100);
+        searchVo.setShowInHomePage(Const.YES);
         List<ResponseModuleTypeVo> typeModules = new ArrayList<>();
         for (ModuleType type : moduleTypes) {
             searchVo.setTypeId(type.getId());
