@@ -24,6 +24,8 @@ public class Module extends BaseEntity {
 
     private String content;
 
+    private String showInHomePage;
+
     private Integer sort;
 
     public static final String TYPE_ID = "type_id";
@@ -32,6 +34,6 @@ public class Module extends BaseEntity {
     public static final String DESCRIPTION = "description";
     public static final String COVER = "cover";
     public static final String CONTENT = "content";
-
+    public static final String SHOW_IN_HOME_PAGE = "show_in_home_page";
     public static final String SORT = "sort";
 }

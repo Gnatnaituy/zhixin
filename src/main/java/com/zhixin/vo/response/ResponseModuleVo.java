@@ -32,5 +32,7 @@ public class ResponseModuleVo extends ResponseBaseVo {
 
     private String content;
 
+    private String showInHomePage;
+
     private Integer sort;
 }

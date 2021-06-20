@@ -126,4 +126,5 @@ create table job
 
 # 文章添加排序
 alter table module add sort tinyint default 0 not null after content;
+alter table module add show_in_home_page char(1) default '0' not null after sort;
 

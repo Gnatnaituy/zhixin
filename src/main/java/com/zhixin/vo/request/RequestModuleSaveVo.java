@@ -25,5 +25,7 @@ public class RequestModuleSaveVo {
 
     private String content;
 
+    private String showInHomePage;
+
     private Integer sort;
 }
