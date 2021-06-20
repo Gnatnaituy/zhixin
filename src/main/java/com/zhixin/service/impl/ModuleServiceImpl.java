@@ -84,6 +84,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
         QueryWrapper<Module> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getTypeId()), Module.TYPE_ID, searchVo.getTypeId());
         queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getSubTypeId()), Module.SUB_TYPE_ID, searchVo.getSubTypeId());
+        queryWrapper.eq(!ObjectUtils.isEmpty(searchVo.getShowInHomePage()), Module.SHOW_IN_HOME_PAGE, searchVo.getShowInHomePage());
         queryWrapper.orderByAsc(Module.SORT);
         Page<Module> modules = this.page(page, queryWrapper);
 
