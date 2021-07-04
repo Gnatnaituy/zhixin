@@ -21,6 +21,8 @@ public class RequestModuleTypeSaveVo {
 
     private String showInHomePage;
 
+    private String homePageLayout;
+
     private String showSubTypeAll;
 
     private Integer sort;

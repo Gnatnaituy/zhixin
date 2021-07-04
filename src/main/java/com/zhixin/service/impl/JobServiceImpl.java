@@ -57,8 +57,4 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
 
         return jobs.convert(o -> Convert.convert(ResponseJobVo.class, o));
     }
-
-    public static void main(String[] args) {
-        ZipUtil.unzip(new File("/Users/ravooo/Downloads/esl-client.zip"), new File("/Users/ravooo/Downloads/aaaaa"));
-    }
 }
