@@ -128,3 +128,5 @@ create table job
 alter table module add sort tinyint default 0 not null after content;
 alter table module add show_in_home_page char(1) default '0' not null after sort;
 
+# 添加主页模块布局
+alter table module_type add home_page_layout char default '1' not null after show_in_home_page;
